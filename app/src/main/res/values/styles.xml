@@ -6,6 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+
     </style>
 
+    <style name="background_default_gradient">
+        <item name="android:background">@drawable/background_gradient_linear</item>
+        <item name="android:padding">@dimen/login_padding_sides</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="WhiteCheck">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="android:solidColor">@color/white</item>
+        <item name="colorAccent">@color/white</item>    </style>
 </resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_padding_sides">20dp</dimen>
+    <dimen name="login_padding_sides_sign_up_button">10dp</dimen>
+    <dimen name="dot_viewpager_widht">8dp</dimen>
+    <dimen name="dot_viewpager_margin">8dp</dimen>
+    <dimen name="login_button_height">50dp</dimen>
+    <dimen name="login_button_margin">5dp</dimen>
+    <dimen name="login_button_image_width">25dp</dimen>
+    <dimen name="login_button_sing_up_height">40dp</dimen>
+    <dimen name="sign_up_margin_top">50dp</dimen>
+    <dimen name="sign_up_edittext_height">40dp</dimen>
+    <dimen name="edittext_left_padding">10dp</dimen>
+    <dimen name="sign_up_margin_bottom">10dp</dimen>
+    <dimen name="username_margin_bottom">25dp</dimen>
+    <dimen name="location_services_margin_top_title">8dp</dimen>
+    <dimen name="location_services_margin_side_msg">15dp</dimen>
+    <dimen name="location_services_image_margin">20dp</dimen>
+    <dimen name="login_up_margin_bottom">20dp</dimen>
+    <dimen name="small_image_icon">24dp</dimen>
+    <dimen name="recycler_padding_sides">20dp</dimen>
+    <dimen name="top_header_table_height">40dp</dimen>
+    <dimen name="table_elements_width">80dp</dimen>
+    <dimen name="channel_view_title_margin_bottom">5dp</dimen>
+    <dimen name="home_screen_top_bar_height">54dp</dimen>
+    <dimen name="broadcaster_info_height_image">180dp</dimen>
+    <dimen name="icons_bottom_bar_pick_show_margin">25dp</dimen>
+    <dimen name="icon_tab_navigation_bottom_bar_size">35dp</dimen>
+    <dimen name="navigation_bar_bottom_height">60dp</dimen>
+    <dimen name="reminder_button_height">48dp</dimen>
+    <dimen name="reminder_button_margin_sides">40dp</dimen>
+    <dimen name="image_celebrity_banner_width">50dp</dimen>
+    <dimen name="splash_icon_dimens">250dp</dimen>
+    <dimen name="splash_icon_dimens_mini">150dp</dimen>
+</resources>

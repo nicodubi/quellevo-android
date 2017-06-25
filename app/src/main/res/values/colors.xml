@@ -2,5 +2,31 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#D01F4D</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="transparent">#FFFFFF</color>
+    <color name="transparent2">#e6e6e6</color>
+    <color name="blue_dark1">#4194D6</color>
+    <color name="blue_dark2">#3A9AC4</color>
+    <color name="blue_dark3">#3493B6</color>
+    <color name="blue_soft">#439FCE</color>
+    <color name="violet">#85A6E9</color>
+    <color name="green_dark">#108493</color>
+    <color name="gray">#d9dada</color>
+    <color name="soft_black_signUpButton">#002E51</color>
+    <color name="gray_signUpButton">#5D7081</color>
+    <color name="gray_zipCodeEditText1">#4D8FBE</color>
+    <color name="gray_zipCodeEditText2">#2788B0</color>
+    <color name="gray_zipCodeEditText3">#117DA1</color>
+    <color name="gray_zipCodeEditTextHint">#2E6C96</color>
+    <color name="gray_divider_recyclerView">#C8C2CC</color>
+    <color name="yellow">#d7ca16</color>
+    <color name="set_reminder_blue_color">#00B0FA</color>
+    <color name="set_reminder_blue_color_transparent">#CC00B0FA</color>
+    <color name="yellow_celebrity_banner">#FFD100</color>
+    <color name="redApp1">#D01F4D</color>
+    <color name="redApp2">#911636</color>
+    <color name="redApp3">#5b091f</color>
+
 </resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/login_padding_sides"
+    style="@style/background_default_gradient"
+    android:orientation="vertical"
+>
+
+    <ImageView
+        android:layout_width="@dimen/splash_icon_dimens"
+        android:layout_height="@dimen/splash_icon_dimens"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/quellevo_icon">
+
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <com.quellevo.quellevo.custom_views.LoginButton
+            xmlns:customname="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_button_height"
+            android:layout_marginBottom="@dimen/login_button_margin"
+            android:id="@+id/login_button_facebook"
+            customname:textButton="@string/sign_in_with_facebook"
+            customname:imageButton="@drawable/facebook"/>
+
+        <com.quellevo.quellevo.custom_views.LoginButton
+            xmlns:customname="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/login_button_height"
+            android:layout_marginBottom="@dimen/login_button_margin"
+            android:id="@+id/login_button_email"
+            customname:textButton="@string/sign_in_with_email"
+            customname:imageButton="@drawable/email_icon"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="@dimen/login_button_sing_up_height"
+                android:layout_marginLeft="@dimen/login_padding_sides_sign_up_button"
+                android:layout_marginRight="@dimen/login_padding_sides_sign_up_button"
+                android:layout_marginBottom="@dimen/login_padding_sides"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:id="@+id/create_account_button_id"
+                android:background="@color/colorAccent"
+                android:layout_gravity="bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dont_have_an_account"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up"
+                    android:textColor="@color/blue_dark3"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

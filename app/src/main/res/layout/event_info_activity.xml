@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient_linear"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+
+    >
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/add_person_icon"
+            android:layout_gravity="center|right"
+            android:id="@+id/add_person_button_id"
+            />
+
+        <TextView
+            android:id="@+id/event_title_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"
+            android:ems="12"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/event_date_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+         />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_provider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/recycler_padding_sides"
+        android:layout_marginRight="@dimen/recycler_padding_sides"
+        />
+</LinearLayout>

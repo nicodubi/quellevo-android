@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/background_default_gradient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:src="@drawable/quellevo_icon"
+        android:layout_marginBottom="@dimen/sign_up_margin_top"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sign_up_edittext_height"
+        android:background="@drawable/shape_login_button"
+        android:id="@+id/sign_up_email_edittext_id"
+        android:hint="@string/sign_up_email_hint"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/edittext_left_padding"
+        android:textSize="18sp"
+        android:layout_marginBottom="@dimen/sign_up_margin_bottom"
+        android:inputType="textEmailAddress"
+        android:nextFocusDown="@+id/sign_up_password_edittext_id"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sign_up_edittext_height"
+        android:background="@drawable/shape_login_button"
+        android:id="@+id/sign_up_password_edittext_id"
+        android:hint="@string/sign_up_password_hint"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/edittext_left_padding"
+        android:textSize="18sp"
+        android:layout_marginBottom="@dimen/sign_up_margin_bottom"
+        android:inputType="textPassword"
+        android:nextFocusDown="@+id/sign_up_name_edittext_id"
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sign_up_edittext_height"
+        android:background="@drawable/shape_login_button"
+        android:id="@+id/sign_up_name_edittext_id"
+        android:hint="@string/sign_up_name_hint"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:gravity="left|center_vertical"
+        android:inputType="text"
+        android:paddingLeft="@dimen/edittext_left_padding"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:layout_marginBottom="@dimen/sign_up_margin_bottom"
+        android:nextFocusDown="@+id/sign_up_surname_edittext_id"
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sign_up_edittext_height"
+        android:background="@drawable/shape_login_button"
+        android:id="@+id/sign_up_surname_edittext_id"
+        android:hint="@string/sign_up_surname_hint"
+        android:textColorHint="@color/white"
+        android:singleLine="true"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="@dimen/edittext_left_padding"
+        android:textSize="18sp"
+        android:layout_marginBottom="@dimen/sign_up_margin_bottom"
+        />
+
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accept_terms"
+        android:textColor="@color/white"
+        android:buttonTint="@color/blue_dark1"
+        android:theme="@style/WhiteCheck"
+        android:textColorHighlight="@color/white"
+        android:id="@+id/sigm_up_terms_checkbox"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_button_height"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="@string/create_account"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/create_account_shape"
+        android:id="@+id/sign_up_create_account_button_id"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="@dimen/login_button_sing_up_height"
+            android:layout_marginLeft="@dimen/login_padding_sides_sign_up_button"
+            android:layout_marginRight="@dimen/login_padding_sides_sign_up_button"
+            android:background="@drawable/create_account_shape"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:id="@+id/sing_in_already_have_account_button_id"
+            android:layout_gravity="bottom">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/already_have_an_account"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_in"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="right"
+                android:layout_gravity="center_vertical"/>
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

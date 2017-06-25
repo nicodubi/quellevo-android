@@ -2,20 +2,77 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.quellevo.quellevo">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/quellevo_icon"
+        android:label="@string/app_name_icon"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+
+        <!--        INICIO FIREBASE                   -->
+        <!-- ESTE SERVICIO MANEJA EL REFRESH DEL TOKEN -->
+        <service android:name=".firebase.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- ESTE SERVICIO MANEJA LA RECEPCION DE PUSH NOTIFICATIONS -->
+        <service android:name=".firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+            See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/quellevo_icon" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/blue_dark1" />
+        <!-- [END fcm_default_icon] -->
+        <!--        FIN FIREBASE                  -->
+
+
+        <activity
+            android:name=".splash.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".home.HomeScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".signup.SignUpActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".login.LoginEmailActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".home.EventInfoActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".home.SelectUserActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

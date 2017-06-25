@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">quellevo</string>
+    <string name="dialog_waiting">Wait please...</string>
+    <string name="app_name_icon">Que Llevo?</string>
+    <string name="default_error_event">Something went wrong, please try again</string>
+    <string name="dont_have_an_account">Don´t have an account?</string>
+
+    <string name="sign_in_with_facebook">Sign in With Facebook</string>
+    <string name="sign_in_with_email">Sign in With Email</string>
+    <string name="sign_up">Sign Up!</string>
+    <string name="sign_up_email_hint">Email</string>
+    <string name="sign_up_password_hint">Password</string>
+    <string name="keep_me_login">Keep Me Logged In</string>
+    <string name="login_forgot_password">Forgot Password</string>
+    <string name="login_sign_in">Sign In</string>
+    <string name="password_is_empty">Specify Password!</string>
+    <string name="password_lenght_error">Password min: 8 and max: 20</string>
+    <string name="password_must_have_digit_error">At least one number</string>
+    <string name="password_must_have_capital_error">At least one capital letter</string>
+    <string name="password_must_have_lower_case_error">At least one lower case</string>
+    <string name="password_must_have_special_character_error">At least one special character</string>
+    <string name="email_invalid_Format">Specify a valid Email</string>
+    <string name="email_is_empty">Specify Email</string>
+    <string name="must_accept_terms">You must accept the Terms of Use to proceed further</string>
+    <string name="accept_terms">Accept Terms of Use</string>
+    <string name="create_account">Create Account</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">Sign In!</string>
+    <string name="yourEvents">Your Events</string>
+    <string name="no_events">You don´t have any event</string>
+    <string name="no_guests">You don´t have any guest</string>
+    <string name="select_friends">Select your Guests</string>
+    <string name="done">DONE</string>
+    <string name="select_one_guest">You have to select at least one</string>
+    <string name="sign_up_name_hint">Name</string>
+    <string name="sign_up_surname_hint">Surname</string>
+    <string name="name_or_surname_empty">Complete name and surname!</string>
+
 </resources>
