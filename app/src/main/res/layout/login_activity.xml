@@ -31,7 +31,7 @@
             android:layout_marginBottom="@dimen/login_button_margin"
             android:id="@+id/login_button_facebook"
             customname:textButton="@string/sign_in_with_facebook"
-            customname:imageButton="@drawable/facebook"/>
+            customname:imageButton="@drawable/face_icon"/>
 
         <com.quellevo.quellevo.custom_views.LoginButton
             xmlns:customname="http://schemas.android.com/apk/res-auto"

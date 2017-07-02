@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.quellevo.quellevo.R;
 import com.quellevo.quellevo.custom_views.LoginButton;
@@ -47,6 +48,12 @@ public class LoginActivity extends AbstractActivity {
     public void clickCreateAccount() {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
+    }
+
+
+    @OnClick(R.id.login_button_facebook)
+    public void clickFacebook() {
+        Toast.makeText(this, R.string.future_lines, Toast.LENGTH_SHORT).show();
     }
 
 }

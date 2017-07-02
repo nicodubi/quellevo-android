@@ -1,7 +1,6 @@
 package com.quellevo.quellevo.events;
 
 import com.quellevo.quellevo.web_services.rest_entities.UserEvent;
-import com.quellevo.quellevo.web_services.rest_entities.UserEventResponse;
 
 import java.util.ArrayList;
 

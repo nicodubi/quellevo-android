@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_gradient_linear"
     android:orientation="vertical">
 
@@ -27,6 +27,21 @@
 
                 >
 
+
+                <ImageView
+                    android:id="@+id/add_event_button"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center|right"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/add_event_icon" />
+
+                <ImageView
+                    android:id="@+id/logout_button_id"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/logout" />
+
                 <TextView
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
@@ -48,7 +63,6 @@
             android:layout_marginLeft="@dimen/recycler_padding_sides"
             android:layout_marginRight="@dimen/recycler_padding_sides"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
 
 
     </android.support.design.widget.CoordinatorLayout>

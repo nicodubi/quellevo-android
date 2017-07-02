@@ -12,6 +12,7 @@ public class UserEvent {
     private String name;
     private String surname;
     private ArrayList<EventItem> event_items;
+    private String firebase_token;
 
     public Long getId() {
         return id;
@@ -43,5 +44,13 @@ public class UserEvent {
 
     public void setEvent_items(ArrayList<EventItem> event_items) {
         this.event_items = event_items;
+    }
+
+    public String getFirebase_token() {
+        return firebase_token;
+    }
+
+    public void setFirebase_token(String firebase_token) {
+        this.firebase_token = firebase_token;
     }
 }

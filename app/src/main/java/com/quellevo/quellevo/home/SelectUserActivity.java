@@ -9,11 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.quellevo.quellevo.R;
 import com.quellevo.quellevo.entities.User;
-import com.quellevo.quellevo.events.GetAllEvents;
-import com.quellevo.quellevo.events.GetAllEventsSuccess;
 import com.quellevo.quellevo.events.GetAllUsersEvent;
 import com.quellevo.quellevo.events.GetAllUsersEventSuccess;
 import com.quellevo.quellevo.login.LoginActivity;
@@ -21,11 +18,8 @@ import com.quellevo.quellevo.utils.AbstractActivity;
 import com.quellevo.quellevo.utils.Constants;
 import com.quellevo.quellevo.utils.CustomSharedPreferences;
 import com.quellevo.quellevo.utils.adapters.DividerItemDecoration;
-import com.quellevo.quellevo.utils.adapters.EventsRecyclerAdapter;
 import com.quellevo.quellevo.utils.adapters.SelectGuestRecyclerAdapter;
-import com.quellevo.quellevo.web_services.rest_entities.Event;
 import com.quellevo.quellevo.web_services.rest_entities.UserEvent;
-import com.quellevo.quellevo.web_services.rest_entities.UserEventResponse;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

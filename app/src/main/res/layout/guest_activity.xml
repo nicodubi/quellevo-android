@@ -18,67 +18,17 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-
-                >
-
-                <ImageView
-                    android:id="@+id/add_person_button_id"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_gravity="center|right"
-                    android:src="@drawable/add_person_icon" />
-
-                <TextView
-                    android:id="@+id/event_title_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:ems="12"
-                    android:gravity="center"
-                    android:singleLine="true"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/event_date_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/guests"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                android:id="@+id/guest_name_title_id"
                 android:textStyle="bold" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_provider"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginBottom="10dp"/>
 
 
-            <Spinner
-                android:id="@+id/items_spinner_id"
-                android:layout_width="fill_parent"
-                android:layout_height="36dp"
-                android:ems="10"
-                android:hint="@string/items"
-                android:textSize="12sp"
-                android:layout_marginBottom="10dp">
-
-                <requestFocus />
-            </Spinner>
 
 
             <TextView
@@ -86,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Items to be added"
+                android:text="Boguht items"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -106,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Added Items"
+                android:text="Items pending to be bought"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -114,6 +64,25 @@
 
             <ListView
                 android:id="@+id/added_items_list_view_id"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:nestedScrollingEnabled="true"
+                android:layout_marginBottom="10dp">
+
+            </ListView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Possible items for assign"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"/>
+
+            <ListView
+                android:id="@+id/possible_items_to_assing_list_id"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:nestedScrollingEnabled="true"

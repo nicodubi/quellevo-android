@@ -3,11 +3,12 @@ package com.quellevo.quellevo.web_services.retrofit;
 
 import com.quellevo.quellevo.entities.User;
 import com.quellevo.quellevo.events.AssignItemEvent;
+import com.quellevo.quellevo.events.BuyItemEventRequest;
 import com.quellevo.quellevo.events.CreateEventSuccess;
 import com.quellevo.quellevo.events.CreateUserEvent;
 import com.quellevo.quellevo.events.CreateUserEventSuccess;
 import com.quellevo.quellevo.events.DeleteEventRequest;
-import com.quellevo.quellevo.events.DeleteEventSuccess;
+import com.quellevo.quellevo.events.DeleteEventItemSuccess;
 import com.quellevo.quellevo.events.ErrorResponseEvent;
 import com.quellevo.quellevo.events.GetAllEvents;
 import com.quellevo.quellevo.events.GetAllEventsSuccess;
@@ -15,6 +16,8 @@ import com.quellevo.quellevo.events.GetAllUsersEvent;
 import com.quellevo.quellevo.events.GetAllUsersEventSuccess;
 import com.quellevo.quellevo.events.GetAnEvent;
 import com.quellevo.quellevo.events.GetAnEventSuccess;
+import com.quellevo.quellevo.events.GetEventListSuccess;
+import com.quellevo.quellevo.events.GetItemsList;
 import com.quellevo.quellevo.events.KeepLoginEventRequest;
 import com.quellevo.quellevo.events.KeepLoginEventResponseError;
 import com.quellevo.quellevo.events.LoginUserEvent;
@@ -23,12 +26,18 @@ import com.quellevo.quellevo.events.PostFirebaseTokenEvent;
 import com.quellevo.quellevo.events.TokenRefreshEventError;
 import com.quellevo.quellevo.events.TokenRefreshEventRequest;
 import com.quellevo.quellevo.events.TokenRefreshEventSuccess;
+import com.quellevo.quellevo.events.UnassignItemEvent;
+import com.quellevo.quellevo.events.UpdateEventRequestSuccess;
 import com.quellevo.quellevo.web_services.rest_entities.ApiResponse;
-import com.quellevo.quellevo.web_services.rest_entities.BooleanDataResponse;
+import com.quellevo.quellevo.web_services.rest_entities.AssignItemEventSuccess;
 import com.quellevo.quellevo.web_services.rest_entities.CreateEventRequest;
+import com.quellevo.quellevo.web_services.rest_entities.CreateEventRequestBody;
 import com.quellevo.quellevo.web_services.rest_entities.Event;
+import com.quellevo.quellevo.web_services.rest_entities.EventItem;
+import com.quellevo.quellevo.web_services.rest_entities.FirebaseBody;
+import com.quellevo.quellevo.web_services.rest_entities.UnassingItemEventSuccess;
+import com.quellevo.quellevo.web_services.rest_entities.UpdateEventRequest;
 import com.quellevo.quellevo.web_services.rest_entities.UserEvent;
-import com.quellevo.quellevo.web_services.rest_entities.UserEventResponse;
 import com.quellevo.quellevo.web_services.rest_entities.UserLoginResponse;
 import com.quellevo.quellevo.web_services.rest_entities.UserSignUpInfo;
 
@@ -225,10 +234,10 @@ public class RetroiftServiceExecutor {
 
     @Subscribe
     public void postFirebaseToken(final PostFirebaseTokenEvent event) {
-        Call<BooleanDataResponse> call = retrofitInstance.getService().postFirebaseToken(event.getFirebaseRequest().getNotificationToken());
-        call.enqueue(new Callback<BooleanDataResponse>() {
+        Call<ApiResponse<UserEvent>> call = retrofitInstance.getService().postFirebaseToken(new FirebaseBody(event.getFirebaseRequest().getNotificationToken()));
+        call.enqueue(new Callback<ApiResponse<UserEvent>>() {
             @Override
-            public void onResponse(Call<BooleanDataResponse> call, Response<BooleanDataResponse> response) {
+            public void onResponse(Call<ApiResponse<UserEvent>> call, Response<ApiResponse<UserEvent>> response) {
                 if (response.body() == null) {
                     //TODO ver si falla cuando el token es enviado por el service de firebase refresh porque se mandaria un default error mas abajo y no habria AbstractAcivity corriendo para recibirlo
                     verificateToken(response.code(), event, null);
@@ -236,7 +245,7 @@ public class RetroiftServiceExecutor {
             }
 
             @Override
-            public void onFailure(Call<BooleanDataResponse> call, Throwable t) {
+            public void onFailure(Call<ApiResponse<UserEvent>> call, Throwable t) {
                 sendDefaultError();
             }
         });
@@ -244,7 +253,7 @@ public class RetroiftServiceExecutor {
 
     @Subscribe
     public void createEvent(final CreateEventRequest event) {
-        Call<ApiResponse<Event>> call = retrofitInstance.getService().createEvent(event);
+        Call<ApiResponse<Event>> call = retrofitInstance.getService().createEvent(new CreateEventRequestBody(event.getName(), event.getDate(), event.getUser_ids(), event.getItem_ids()));
         call.enqueue(new Callback<ApiResponse<Event>>() {
             @Override
             public void onResponse(Call<ApiResponse<Event>> call, Response<ApiResponse<Event>> response) {
@@ -323,14 +332,13 @@ public class RetroiftServiceExecutor {
     }
 
     @Subscribe
-    public void deleteEvent(final DeleteEventRequest event) {
+    public void deleteEventItem(final DeleteEventRequest event) {
         Call<ApiResponse<Event>> call = retrofitInstance.getService().deleteEvent(event.getEventId(), event.getEventItemId());
         call.enqueue(new Callback<ApiResponse<Event>>() {
             @Override
             public void onResponse(Call<ApiResponse<Event>> call, Response<ApiResponse<Event>> response) {
                 if (response.body() != null) {
-                    //TODO ver como es la respuesdta de eliminar evento
-                    sendResponseFromApiResponse(response, new DeleteEventSuccess(), null);
+                    sendResponseFromApiResponse(response, new DeleteEventItemSuccess(), null);
                 } else {
                     verificateToken(response.code(), event, null);
                 }
@@ -345,13 +353,13 @@ public class RetroiftServiceExecutor {
 
     @Subscribe
     public void assignItem(final AssignItemEvent event) {
-        Call<ApiResponse<Event>> call = retrofitInstance.getService().asignItem(event.getEventId(), event.getEventItemId(), event.getEventUserId());
+        Call<ApiResponse<Event>> call = retrofitInstance.getService().asignItem(event.getEventItem().getEvent_id(), event.getEventItem().getId(), event.getAssignItemBody());
         call.enqueue(new Callback<ApiResponse<Event>>() {
             @Override
             public void onResponse(Call<ApiResponse<Event>> call, Response<ApiResponse<Event>> response) {
                 if (response.body() != null) {
                     //TODO ver como es la respuesdta de asigan item
-                    sendResponseFromApiResponse(response, new DeleteEventSuccess(), null);
+                    sendResponseFromApiResponse(response, new AssignItemEventSuccess(response.body().getResponse(), event.getEventItem()), null);
                 } else {
                     verificateToken(response.code(), event, null);
                 }
@@ -363,4 +371,90 @@ public class RetroiftServiceExecutor {
             }
         });
     }
+
+    @Subscribe
+    public void unassignItem(final UnassignItemEvent event) {
+        Call<ApiResponse<Event>> call = retrofitInstance.getService().unasignItem(event.getEventItem().getEvent_id(), event.getEventItem().getId());
+        call.enqueue(new Callback<ApiResponse<Event>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Event>> call, Response<ApiResponse<Event>> response) {
+                if (response.body() != null) {
+                    //TODO ver como es la respuesdta de asigan item
+                    sendResponseFromApiResponse(response, new UnassingItemEventSuccess(response.body().getResponse(), event.getEventItem()), null);
+                } else {
+                    verificateToken(response.code(), event, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Event>> call, Throwable t) {
+                sendDefaultError();
+            }
+        });
+    }
+
+    @Subscribe
+    public void updateEventInfo(final UpdateEventRequest event) {
+        CreateEventRequestBody body = new CreateEventRequestBody(event.getEventRequest().getName(), event.getEventRequest().getDate()
+                , event.getEventRequest().getUser_ids(), event.getEventRequest().getItem_ids());
+        Call<ApiResponse<Event>> call = retrofitInstance.getService().updateEventInfo(event.getEventId(), body);
+        call.enqueue(new Callback<ApiResponse<Event>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Event>> call, Response<ApiResponse<Event>> response) {
+                if (response.body() != null) {
+                    sendResponseFromApiResponse(response, new UpdateEventRequestSuccess(response.body().getResponse()), null);
+                } else {
+                    verificateToken(response.code(), event, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Event>> call, Throwable t) {
+                sendDefaultError();
+            }
+        });
+    }
+
+
+    @Subscribe
+    public void getItemList(final GetItemsList event) {
+        Call<ApiResponse<ArrayList<EventItem>>> call = retrofitInstance.getService().getItemsList();
+        call.enqueue(new Callback<ApiResponse<ArrayList<EventItem>>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<ArrayList<EventItem>>> call, Response<ApiResponse<ArrayList<EventItem>>> response) {
+                if (response.body() != null) {
+                    sendResponseFromApiResponse(response, new GetEventListSuccess(response.body().getResponse()), null);
+                } else {
+                    verificateToken(response.code(), event, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<ArrayList<EventItem>>> call, Throwable t) {
+                sendDefaultError();
+            }
+        });
+    }
+
+
+    @Subscribe
+    public void buyItem(final BuyItemEventRequest event) {
+        Call<ApiResponse<EventItem>> call = retrofitInstance.getService().buyItem(event.getEventItem(), event.getRequestBody());
+        call.enqueue(new Callback<ApiResponse<EventItem>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<EventItem>> call, Response<ApiResponse<EventItem>> response) {
+                if (response.body() != null && response.isSuccessful()) {
+                    // EventBus.getDefault().post(new BuyItemEventSuccess());
+                } else {
+                    verificateToken(response.code(), event, null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<EventItem>> call, Throwable t) {
+                sendDefaultError();
+            }
+        });
+    }
+
 }

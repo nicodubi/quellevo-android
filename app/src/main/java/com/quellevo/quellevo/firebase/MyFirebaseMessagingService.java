@@ -18,6 +18,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.quellevo.quellevo.R;
+import com.quellevo.quellevo.home.EventInfoActivity;
 import com.quellevo.quellevo.home.HomeScreenActivity;
 import com.quellevo.quellevo.utils.Constants;
 
@@ -25,11 +26,19 @@ import com.quellevo.quellevo.utils.Constants;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
     private static final int NEW_INVITATION_TO_EVENT = 1;
+    private static final String NOTIFICATION_CODE = "notification_code";
+    private static final String USER_NAME = "user_name";
+    private static final String EVENT_NAME = "event_name";
+    private static final String EVENT_ID = "event_id";
+    private static final int ASSING_ITEM = 2;
+    private static final String ITEM_NAME = "item_name";
+    private static final String ACTION_ASSING = "action";
 
     /**
      * Called when message is received.
@@ -71,21 +80,17 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //VALUE(0) = VALOR NOTIF , 1,2,3 O 4 (VER CONSTANTES PARA EL SWITCH)
         //VALUE(1) TITULO NOTIF
         //VALUE(2) SUBTITULO NOTIF
-        int notifValue = 0;
-        String title = "Doc to Doc";
-        String subtitle = "";
-        Collection c = ((ArrayMap) data).values();
-        if (c != null) {
-            ArrayList<String> values = new ArrayList<>(c);
-            notifValue = Integer.valueOf(values.get(0));
-            switch (notifValue) {
-                case NEW_INVITATION_TO_EVENT:
-                    newInvitationToEvent(values);
-                    break;
-                default:
-                    //TODO FIREBASE
-                    break;
-            }
+        int notifValue = Integer.valueOf(data.get(NOTIFICATION_CODE));
+        switch (notifValue) {
+            case NEW_INVITATION_TO_EVENT:
+                newInvitationToEvent(data);
+                break;
+            case ASSING_ITEM:
+                newAssignItem(data);
+                break;
+            default:
+                //TODO FIREBASE
+                break;
         }
 
         //PARA LEER DE LA NOTIFICACION RECIBIDA HAY QUE PREGUNTAR POR LAS CLAVES DEL HASH OBTENIDO
@@ -97,20 +102,39 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         }*/
         //   sendNotification("al tutorial");
         // Also if you intend on generating your own notifications as a result of a received FCM
-        // message, here is where that should be initiated. See sendNotification method below.
+        // message, here    is where that should be initiated. See sendNotification method below.
     }
 
-    private void newInvitationToEvent(ArrayList<String> values) {
-        Intent intent = new Intent(this, HomeScreenActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        //value 1 TITLE
-        // value 2 creator
-        prepareNotificationGoTo(intent, "New Invitation", values.get(2) + " te invito al evento: " + values.get(1));
+    private void newAssignItem(Map<String, String> data) {
+        Intent intent = new Intent(this, EventInfoActivity.class);
+        String creator = data.get(USER_NAME);
+        String eventName = data.get(EVENT_NAME);
+        Long eventId = Long.valueOf(data.get(EVENT_ID));
+        String itemName = data.get(ITEM_NAME);
+        String action = data.get(ACTION_ASSING);
+
+        intent.putExtra(Constants.EVENT_ID_KEY, eventId);
+
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        prepareNotificationGoTo(intent, "Item assginment change", creator + " te " + action + " el item: " + itemName + " en el evento: " + eventName);
+    }
+
+    private void newInvitationToEvent(Map<String, String> data) {
+        Intent intent = new Intent(this, EventInfoActivity.class);
+        String creator = data.get(USER_NAME);
+        String eventName = data.get(EVENT_NAME);
+        Long eventId = Long.valueOf(data.get(EVENT_ID));
+        intent.putExtra(Constants.EVENT_ID_KEY, eventId);
+
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        prepareNotificationGoTo(intent, "New Invitation", creator + " te invito al evento: " + eventName);
     }
     // [END receive_message]
 
     /* private void goToHome(boolean userB, String title, String message) {
-         Intent intent = new Intent(this, userB ? HomeActivityUserB.class : HomeActivity.class);
+         Intent intent = new IntenSt(this, userB ? HomeActivityUserB.class : HomeActivity.class);
          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
          prepareNotificationGoTo(intent, title, message);
      }
@@ -125,13 +149,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        NotificationCompat.BigTextStyle bigTextStyle = new NotificationCompat.BigTextStyle();
+        bigTextStyle.setBigContentTitle(title);
+        bigTextStyle.bigText(message);
+
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.quellevo_icon)
                 .setContentTitle(title)
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
-                .setContentIntent(pendingIntent);
+                .setContentIntent(pendingIntent)
+                .setStyle(bigTextStyle);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

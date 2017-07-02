@@ -35,5 +35,12 @@
     <string name="sign_up_name_hint">Name</string>
     <string name="sign_up_surname_hint">Surname</string>
     <string name="name_or_surname_empty">Complete name and surname!</string>
+    <string name="save_info_event">Save Event Info</string>
+    <string name="event_saved_successfully">Event saved successfully!</string>
+    <string name="guests">Guests</string>
+    <string name="event_name">Event Name</string>
+    <string name="complete_event_name">Complete event name</string>
+    <string name="future_lines">On future Lines</string>
+    <string name="items">Items...</string>
 
 </resources>

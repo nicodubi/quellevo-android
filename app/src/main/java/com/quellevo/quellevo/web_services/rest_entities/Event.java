@@ -12,7 +12,8 @@ public class Event {
     private Long id;
     private String name;
     private Date date;
-    private ArrayList<UserEventResponse> event_users;
+    private ArrayList<UserEvent> event_users;
+    private ArrayList<EventItem> items_without_assignment;
 
     public Long getId() {
         return id;
@@ -38,16 +39,24 @@ public class Event {
         this.date = date;
     }
 
-    public ArrayList<UserEventResponse> getEvent_users() {
+    public ArrayList<UserEvent> getEvent_users() {
         return event_users;
     }
 
-    public void setEvent_users(ArrayList<UserEventResponse> event_users) {
+    public void setEvent_users(ArrayList<UserEvent> event_users) {
         this.event_users = event_users;
     }
 
     public String getDateString() {
         String dateString = (new SimpleDateFormat("HH:mm dd/MM/yyyy").format(date));
         return dateString;
+    }
+
+    public ArrayList<EventItem> getItems_without_assignment() {
+        return items_without_assignment;
+    }
+
+    public void setItems_without_assignment(ArrayList<EventItem> items_without_assignment) {
+        this.items_without_assignment = items_without_assignment;
     }
 }

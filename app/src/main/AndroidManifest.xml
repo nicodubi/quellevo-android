@@ -73,6 +73,15 @@
         <activity
             android:name=".home.SelectUserActivity"
             android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".home.CreateEventActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".home.GuestViewActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

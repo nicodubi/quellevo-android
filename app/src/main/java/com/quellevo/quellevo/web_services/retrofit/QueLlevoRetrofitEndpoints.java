@@ -1,14 +1,15 @@
 package com.quellevo.quellevo.web_services.retrofit;
 
 import com.quellevo.quellevo.web_services.rest_entities.ApiResponse;
-import com.quellevo.quellevo.web_services.rest_entities.BooleanDataResponse;
-import com.quellevo.quellevo.web_services.rest_entities.CreateEventRequest;
+import com.quellevo.quellevo.web_services.rest_entities.AssignItemBody;
+import com.quellevo.quellevo.web_services.rest_entities.BuyItemRequestBody;
+import com.quellevo.quellevo.web_services.rest_entities.CreateEventRequestBody;
 import com.quellevo.quellevo.web_services.rest_entities.CreateLoginEmailRequest;
 import com.quellevo.quellevo.web_services.rest_entities.CreateUserRequest;
 import com.quellevo.quellevo.web_services.rest_entities.Event;
-import com.quellevo.quellevo.web_services.rest_entities.FirebaseRequest;
+import com.quellevo.quellevo.web_services.rest_entities.EventItem;
+import com.quellevo.quellevo.web_services.rest_entities.FirebaseBody;
 import com.quellevo.quellevo.web_services.rest_entities.UserEvent;
-import com.quellevo.quellevo.web_services.rest_entities.UserEventResponse;
 import com.quellevo.quellevo.web_services.rest_entities.UserLoginResponse;
 import com.quellevo.quellevo.web_services.rest_entities.UserSignUpInfo;
 
@@ -19,7 +20,6 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -39,11 +39,11 @@ public interface QueLlevoRetrofitEndpoints {
     Call<UserLoginResponse> login(@Body CreateLoginEmailRequest loginRequest);
 
 
-    @PUT("user/device")
-    Call<BooleanDataResponse> postFirebaseToken(@Body String token);
+    @POST("users/update_token")
+    Call<ApiResponse<UserEvent>> postFirebaseToken(@Body FirebaseBody token);
 
     @POST("events")
-    Call<ApiResponse<Event>> createEvent(@Body CreateEventRequest request);
+    Call<ApiResponse<Event>> createEvent(@Body CreateEventRequestBody request);
 
     @GET("users")
     Call<ApiResponse<ArrayList<UserEvent>>> getAllUsers();
@@ -56,9 +56,24 @@ public interface QueLlevoRetrofitEndpoints {
 
     //TODO ver respuesta
     @DELETE("events/{eventId}/event_items/{eventItemId}")
-    Call<ApiResponse<Event>> deleteEvent(@Path("eventId") Long eventId,@Path("eventItemId") Long eventItemId);
+    Call<ApiResponse<Event>> deleteEvent(@Path("eventId") Long eventId, @Path("eventItemId") Long eventItemId);
 
-    //TODO ver respuesta
     @POST("events/{eventId}/event_items/{eventItemId}/assign")
-    Call<ApiResponse<Event>> asignItem(@Path("eventId") Long eventId,@Path("eventItemId") Long eventItemId,@Body Long event_user_id);
+    Call<ApiResponse<Event>> asignItem(@Path("eventId") Long eventId, @Path("eventItemId") Long eventItemId, @Body AssignItemBody body);
+
+
+    @POST("events/{eventId}/event_items/{eventItemId}/assign")
+    Call<ApiResponse<Event>> unasignItem(@Path("eventId") Long eventId, @Path("eventItemId") Long eventItemId);
+
+    @POST("events/{eventId}/update")
+    Call<ApiResponse<Event>> updateEventInfo(@Path("eventId") Long eventUserId, @Body CreateEventRequestBody event);
+
+    @GET("items")
+    Call<ApiResponse<ArrayList<EventItem>>> getItemsList();
+
+    @DELETE("events/{eventId}/event_items/{eventItemId}")
+    Call<ApiResponse<Event>> deleteItemFromEvent(@Path("eventId") Long eventId, @Path("eventItemId") Long eventItemId);
+
+    @POST("event_items/{eventItemId}/buy_item")
+    Call<ApiResponse<EventItem>> buyItem(@Path("eventItemId") Long eventItemId, @Body BuyItemRequestBody event);
 }

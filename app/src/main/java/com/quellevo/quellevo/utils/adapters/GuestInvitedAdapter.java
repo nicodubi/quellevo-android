@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.quellevo.quellevo.R;
 import com.quellevo.quellevo.home.EventInfoActivity;
+import com.quellevo.quellevo.home.GuestViewActivity;
 import com.quellevo.quellevo.utils.Constants;
 import com.quellevo.quellevo.web_services.rest_entities.Event;
 import com.quellevo.quellevo.web_services.rest_entities.UserEvent;
@@ -27,9 +29,12 @@ public class GuestInvitedAdapter extends RecyclerView.Adapter<GuestInvitedAdapte
 
     private ArrayList<UserEvent> guests;
 
+    private GuestClicked guestClicked;
 
-    public void setGusets(ArrayList<UserEvent> guests) {
+
+    public void setGusets(ArrayList<UserEvent> guests,GuestClicked guestClicked) {
         this.guests = guests;
+        this.guestClicked = guestClicked;
         notifyDataSetChanged();
     }
 
@@ -37,14 +42,18 @@ public class GuestInvitedAdapter extends RecyclerView.Adapter<GuestInvitedAdapte
     public GuestsInvitedViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_view_list, parent, false);
-        GuestsInvitedViewHolder providerViewHolder = new GuestsInvitedViewHolder(view, new GuestsInvitedViewHolder.ItemClickListener() {
-            @Override
-            public void onItemClick(GuestsInvitedViewHolder view, int position) {
-                //TODO CLICK EN EVENT IR A LA ACTIVITY DE INFO DEL EVENT
-
-            }
-        });
-        return providerViewHolder;
+        if (this.guestClicked != null) {
+            GuestsInvitedViewHolder providerViewHolder = new GuestsInvitedViewHolder(view, new GuestsInvitedViewHolder.ItemClickListener() {
+                @Override
+                public void onItemClick(GuestsInvitedViewHolder view, int position) {
+                    guestClicked.guestClicked(guests.get(position));
+                }
+            });
+            return providerViewHolder;
+        } else {
+            GuestsInvitedViewHolder providerViewHolder = new GuestsInvitedViewHolder(view, null);
+            return providerViewHolder;
+        }
     }
 
     @Override
@@ -73,19 +82,25 @@ public class GuestInvitedAdapter extends RecyclerView.Adapter<GuestInvitedAdapte
             super(itemView);
             this.listener = listener;
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (GuestsInvitedViewHolder.this.listener != null) {
-                        GuestsInvitedViewHolder.this.listener.onItemClick(GuestsInvitedViewHolder.this, getAdapterPosition());
+            if (listener != null) {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (GuestsInvitedViewHolder.this.listener != null) {
+                            GuestsInvitedViewHolder.this.listener.onItemClick(GuestsInvitedViewHolder.this, getAdapterPosition());
+                        }
                     }
-                }
-            });
+                });
+            }
         }
 
 
         interface ItemClickListener {
             void onItemClick(GuestsInvitedViewHolder view, int position);
         }
+    }
+
+    public interface GuestClicked{
+        void guestClicked(UserEvent userEvent);
     }
 }

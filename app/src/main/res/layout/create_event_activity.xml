@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient_linear"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+
+        >
+
+        <ImageView
+            android:id="@+id/add_person_button_id"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center|right"
+            android:src="@drawable/add_person_icon" />
+
+        <TextView
+            android:id="@+id/event_title_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|left"
+            android:ems="12"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/event_name_id"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sign_up_edittext_height"
+        android:layout_marginBottom="@dimen/sign_up_margin_bottom"
+        android:background="@drawable/shape_login_button"
+        android:gravity="left|center_vertical"
+        android:hint="@string/event_name"
+        android:inputType="text"
+        android:paddingLeft="@dimen/edittext_left_padding"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/event_date_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/guests"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_provider"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/recycler_padding_sides"
+        android:layout_marginRight="@dimen/recycler_padding_sides"
+        android:layout_weight="1" />
+
+
+    <Spinner
+        android:id="@+id/items_spinner_id"
+        android:layout_width="fill_parent"
+        android:layout_height="36dp"
+        android:ems="10"
+        android:hint="@string/items"
+        android:textSize="12sp"
+        android:layout_marginBottom="10dp">
+
+        <requestFocus />
+    </Spinner>
+
+
+    <TextView
+        android:id="@+id/toolbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Selected Items:"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"/>
+
+
+    <ListView
+        android:id="@+id/items_list_view_id"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:nestedScrollingEnabled="true"
+        android:layout_marginBottom="10dp">
+
+    </ListView>
+
+
+
+
+    <TextView
+        android:id="@+id/save_info_event_id"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_button_height"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/login_padding_sides"
+        android:background="@drawable/create_account_shape"
+        android:gravity="center"
+        android:text="@string/save_info_event"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</LinearLayout>

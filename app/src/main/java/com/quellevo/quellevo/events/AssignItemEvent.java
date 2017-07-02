@@ -1,41 +1,35 @@
 package com.quellevo.quellevo.events;
 
+import com.quellevo.quellevo.web_services.rest_entities.AssignItemBody;
+import com.quellevo.quellevo.web_services.rest_entities.EventItem;
+
 /**
  * Created by Nicolas on 25/6/2017.
  */
 
 public class AssignItemEvent {
-    private Long eventId;
-    private Long eventItemId;
-    private Long eventUserId;
+    private EventItem eventItem;
+    private AssignItemBody assignItemBody;
 
-    public AssignItemEvent(Long eventId, Long eventItemId, Long eventUserId) {
-        this.eventId = eventId;
-        this.eventItemId = eventItemId;
-        this.eventUserId = eventUserId;
+    public AssignItemEvent(EventItem eventItem, AssignItemBody assignItemBody) {
+        this.eventItem = eventItem;
+        this.assignItemBody = assignItemBody;
     }
 
-    public Long getEventId() {
-        return eventId;
+    public EventItem getEventItem() {
+        return eventItem;
     }
 
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
+    public void setEventItem(EventItem eventItem) {
+        this.eventItem = eventItem;
     }
 
-    public Long getEventItemId() {
-        return eventItemId;
+
+    public AssignItemBody getAssignItemBody() {
+        return assignItemBody;
     }
 
-    public void setEventItemId(Long eventItemId) {
-        this.eventItemId = eventItemId;
-    }
-
-    public Long getEventUserId() {
-        return eventUserId;
-    }
-
-    public void setEventUserId(Long eventUserId) {
-        this.eventUserId = eventUserId;
+    public void setAssignItemBody(AssignItemBody assignItemBody) {
+        this.assignItemBody = assignItemBody;
     }
 }
